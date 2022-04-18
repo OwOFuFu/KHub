@@ -1,0 +1,38 @@
+#      __ __      __  __      __
+#     / //_/     / / / /_  __/ /_
+#    / ,< ______/ /_/ / / / / __ \
+#   / /| /_____/ __  / /_/ / /_/ /
+#  /_/ |_|    /_/ /_/\__,_/_.___/
+# By YumaHisai
+
+Version: '${project.version}'
+
+Launchpad:
+  Random:
+    Plate: GOLD_PLATE
+    UBID: GOLD_BLOCK
+    Sound: ENTITY_FIREWORK_LARGE_BLAST
+  Normal:
+    Plate: STONE_PRESSURE_PLATE
+    UBID: SMOOTH_STONE
+    Sound: ENTITY_FIREWORK_ROCKET_LARGE_BLAST
+
+LaunchBlock:
+  Random:
+    Block: EMERALD_BLOCK
+    UBID: ENDER_STONE
+    Sound: ENTITY_FIREWORK_LARGE_BLAST
+  Normal:
+    Block: SLIME_BLOCK
+    UBID: SOUL_SAND
+    Sound: ENTITY_FIREWORK_LARGE_BLAST
+
+CoolDownVisibility: 10
+
+Spawn:
+  world: ""
+  x:
+  y:
+  z:
+  pitch:
+  yaw:

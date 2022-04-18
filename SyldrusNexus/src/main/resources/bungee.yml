@@ -1,0 +1,3 @@
+name: KBungee
+version: '${project.version}'
+main: com.yumahisai.kbungee.KBungee

@@ -1,0 +1,10 @@
+name: KHub
+version: '${project.version}'
+main: com.yumahisai.khub.Main
+api-version: 1.18
+authors: [ YumaHisai ]
+softdepend:
+  - LuckPerms
+commands:
+  spawn:
+    description: "Spawn Command"
