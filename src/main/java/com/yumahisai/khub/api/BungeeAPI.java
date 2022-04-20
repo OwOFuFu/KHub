@@ -7,23 +7,14 @@ import org.bukkit.entity.Player;
 
 public class BungeeAPI {
 
-    public static void sendPlayerToServer(Player p,String server){
-
+    public static void sendPlayerToServer(Player p, String server) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
-
-        try{
-
+        try {
             out.writeUTF("Connect");
             out.writeUTF(server);
-
+            p.sendPluginMessage(Main.getInstance(), "BungeeCord", out.toByteArray());
         } catch (Exception e) {
-
             e.printStackTrace();
-
         }
-
-        p.sendPluginMessage(Main.getInstance(), "BungeeCord", out.toByteArray());
-
     }
-
 }

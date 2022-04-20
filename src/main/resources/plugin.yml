@@ -5,6 +5,7 @@ api-version: 1.18
 authors: [ YumaHisai ]
 softdepend:
   - LuckPerms
+  - ViaVersion
 commands:
   spawn:
     description: "Spawn Command"

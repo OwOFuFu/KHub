@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.bukkit.Material.COMPASS;
+import static org.bukkit.Material.*;
 
 public class SelectorListeners implements Listener {
 
@@ -39,7 +39,7 @@ public class SelectorListeners implements Listener {
     ItemStack main_lobby = new ItemStack(Material.CRAFTING_TABLE);
     ItemStack all_games = new ItemStack(Material.CLOCK);
     ItemStack survival = new ItemStack(Material.GRASS_BLOCK);
-    ItemStack lobby_selector = new ItemStack(Material.NETHER_STAR);
+    ItemStack lobby_selector = new ItemStack(NETHER_STAR);
 
 
 
@@ -203,15 +203,35 @@ public class SelectorListeners implements Listener {
                 }
             }
         }
+
+        if(player.getInventory().contains(PLAYER_HEAD)){
+
+            if(event.getAction().isRightClick() || event.getAction().isLeftClick()){
+                if(player.getInventory().getItemInHand().getType().equals(PLAYER_HEAD)){
+                    event.setCancelled(true);
+                    player.sendMessage("§cIn Arrivo prossimamente.");
+                }
+            }
+        }
+
+        if(player.getInventory().contains(NETHER_STAR)){
+
+            if(event.getAction().isRightClick() || event.getAction().isLeftClick()){
+                if(player.getInventory().getItemInHand().getType().equals(NETHER_STAR)){
+                    event.setCancelled(true);
+                    player.sendMessage("§cIn Arrivo prossimamente.");
+                }
+            }
+        }
     }
 
     @EventHandler
     public void onDrop(PlayerDropItemEvent event){
 
-        if(event.getPlayer().getInventory().contains(Material.PLAYER_HEAD)
+        if(event.getPlayer().getInventory().contains(PLAYER_HEAD)
         || event.getPlayer().getInventory().contains(Material.CHEST)
         || event.getPlayer().getInventory().contains(Material.COMPASS)
-        || event.getPlayer().getInventory().contains(Material.NETHER_STAR)
+        || event.getPlayer().getInventory().contains(NETHER_STAR)
         || event.getPlayer().getInventory().contains(Material.LIME_DYE)
         || event.getPlayer().getInventory().contains(Material.GRAY_DYE)){
             event.setCancelled(true);
@@ -235,6 +255,18 @@ public class SelectorListeners implements Listener {
                     e.setCancelled(true);
                     break;
             }
+            if(e.isShiftClick()) {
+                switch(e.getCurrentItem().getType()){
+                    case PLAYER_HEAD:
+                    case CHEST:
+                    case COMPASS:
+                    case NETHER_STAR:
+                    case LIME_DYE:
+                    case GRAY_DYE:
+                        e.setCancelled(true);
+                        break;
+                }
+            }
         }
 
         if(e.getView().getTitle().equalsIgnoreCase("Selettore Server")){
@@ -242,13 +274,19 @@ public class SelectorListeners implements Listener {
                 case CRAFTING_TABLE:
                     if(p.hasPermission("khub.selector.lobby.main")){
                         p.closeInventory();
-                        BungeeAPI.sendPlayerToServer(p, "Hub");
+                        if(serverOnline(25565)) BungeeAPI.sendPlayerToServer(p, "Hub");
+                        else {
+                            p.sendMessage("§cIl server attualmente è offline oppure non è raggiungibile. Riprova più tardi");
+                        }
                         break;
                     }
                 case BLAZE_ROD:
                     if(p.hasPermission("khub.selector.tornei")){
                         p.closeInventory();
-                        BungeeAPI.sendPlayerToServer(p, "Tornei");
+                        if(serverOnline(25580)) BungeeAPI.sendPlayerToServer(p, "Tornei");
+                        else {
+                            p.sendMessage("§cIl server attualmente è offline oppure non è raggiungibile. Riprova più tardi");
+                        }
                         break;
                     }
                 case CLOCK:
